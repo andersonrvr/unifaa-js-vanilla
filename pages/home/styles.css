@@ -1,0 +1,22 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  margin-top: 0.625rem;
+}
+
+.product-list {
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 5px;
+  overflow-x: scroll;
+}
+
+@media (min-width: 1024px) {
+  .product-list {
+    display: flex;
+    gap: 5px;
+    overflow-x: auto;
+    flex-wrap: wrap;
+  }
+}

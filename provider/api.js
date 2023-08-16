@@ -45,7 +45,19 @@ export class API {
       position: "top-center",
     });
   }
-
+  static async register(object) {
+    try {
+      const response = await fetch(
+        this.baseUrl("login"),
+        this.defaultHeaders("POST", object)
+      );
+      const json = await response.json();
+      this.handleErrors(response, json);
+      return json;
+    } catch (error) {
+      console.log(error);
+    }
+  }
   static async login(email, password) {
     try {
       const response = await fetch(
@@ -239,9 +251,3 @@ export class API {
     }
   }
 }
-
-const teste = document.querySelector("#teste");
-teste.addEventListener("click", async () => {
-  const teste = await API.getOneProduct("1");
-  console.log(teste);
-});

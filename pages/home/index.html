@@ -1,0 +1,104 @@
+<DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNIFAA - DESAFIO 1</title>
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="./styles.css">
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"></script>
+    <!-- toast -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-toast-plugin@1.3.2/dist/jquery.toast.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/jquery-toast-plugin@1.3.2/dist/jquery.toast.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">UNIFAA</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/index.html">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <header>
+        <h1>Produtos</h1>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Criar produto
+        </button>
+      </header>
+      <section class="product-list">
+
+      </section>
+    </main>
+
+    <script type="module" src="/provider/api.js"></script>
+    <script type="module" src="./index.js"></script>
+
+    <!-- Modal Create Product -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Criação de produto</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form id="form-create-product">
+            <div class="modal-body">
+              <div class="form-floating mb-3">
+                <input type="text" name="nome" required class="form-control" id="floatingName" placeholder="Sapato">
+                <label for="floatingName">Nome do produto</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="number" name="valor" required class="form-control" id="floatingPrice" placeholder="250">
+                <label for="floatingPrice">Valor</label>
+
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="observacao" required id="floatingObs"
+                  placeholder="Produto de couro">
+                <label for="floatingObs">Observação</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" name="quantidadeEstoque" required id="floatingQuantity"
+                  placeholder="200">
+                <label for="floatingQuantity">Quantidade</label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" id='close-modal-creation'
+                data-bs-dismiss="modal">Fechar</button>
+              <button type="submit" class="btn btn-primary">Criar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  </html>
