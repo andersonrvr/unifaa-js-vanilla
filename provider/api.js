@@ -9,8 +9,16 @@ export class API {
         "Content-Type": "application/json",
         Authorization: JSON.stringify(token),
       },
-
       body: JSON.stringify(object),
+    };
+  }
+  static defaultHeadersWithoutBody(method, token) {
+    return {
+      method: method,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: JSON.stringify(token),
+      },
     };
   }
   static set token(value) {
@@ -76,7 +84,7 @@ export class API {
     try {
       const response = await fetch(
         this.baseUrl("logout"),
-        this.defaultHeaders("DELETE")
+        this.defaultHeadersWithoutBody("DELETE")
       );
       const json = await response.json();
       this.handleErrors(response, json);
@@ -90,7 +98,7 @@ export class API {
     try {
       const response = await fetch(
         this.baseUrl("usuarios"),
-        this.defaultHeaders("GET")
+        this.defaultHeadersWithoutBody("GET")
       );
       const json = await response.json();
       this.handleErrors(response, json);
@@ -103,7 +111,7 @@ export class API {
     try {
       const response = await fetch(
         this.baseUrl(`usuarios/${id}`),
-        this.defaultHeaders("GET")
+        this.defaultHeadersWithoutBody("GET")
       );
       const json = await response.json();
       this.handleErrors(response, json);
@@ -116,7 +124,7 @@ export class API {
     try {
       const response = await fetch(
         this.baseUrl("clientes"),
-        this.defaultHeaders("GET")
+        this.defaultHeadersWithoutBody("GET")
       );
       const json = await response.json();
       this.handleErrors(response, json);
@@ -130,7 +138,7 @@ export class API {
     try {
       const response = await fetch(
         this.baseUrl(`clientes/${id}`),
-        this.defaultHeaders("GET")
+        this.defaultHeadersWithoutBody("GET")
       );
       const json = await response.json();
       this.handleErrors(response, json);
@@ -171,22 +179,24 @@ export class API {
     try {
       const response = await fetch(
         this.baseUrl(`clientes/${id}`),
-        this.defaultHeaders("DELETE", object)
+        this.defaultHeadersWithoutBody("DELETE")
       );
-      const json = await response.json();
-      this.handleErrors(response, json);
-      return json;
+      if (!response.ok) {
+        const json = await response.json();
+        this.handleErrors(response, json);
+        return json;
+      }
+      return true;
     } catch (error) {
       console.log(error);
     }
   }
 
-  /////////////////////////////////////////////////////////////
   static async getAllProducts() {
     try {
       const response = await fetch(
         this.baseUrl("produtos"),
-        this.defaultHeaders("GET")
+        this.defaultHeadersWithoutBody("GET")
       );
       const json = await response.json();
       this.handleErrors(response, json);
@@ -200,7 +210,7 @@ export class API {
     try {
       const response = await fetch(
         this.baseUrl(`produtos/${id}`),
-        this.defaultHeaders("GET")
+        this.defaultHeadersWithoutBody("GET")
       );
       const json = await response.json();
       this.handleErrors(response, json);
@@ -224,7 +234,7 @@ export class API {
     }
   }
 
-  static async updateProduct(id) {
+  static async updateProduct(id, object) {
     try {
       const response = await fetch(
         this.baseUrl(`produtos/${id}`),
@@ -241,11 +251,14 @@ export class API {
     try {
       const response = await fetch(
         this.baseUrl(`produtos/${id}`),
-        this.defaultHeaders("DELETE", object)
+        this.defaultHeadersWithoutBody("DELETE")
       );
-      const json = await response.json();
-      this.handleErrors(response, json);
-      return json;
+      if (!response.ok) {
+        const json = await response.json();
+        this.handleErrors(response, json);
+        return json;
+      }
+      return true;
     } catch (error) {
       console.log(error);
     }

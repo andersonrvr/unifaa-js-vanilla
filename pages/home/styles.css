@@ -4,7 +4,9 @@ header {
   padding: 5px;
   margin-top: 0.625rem;
 }
-
+.input-search {
+  max-width: 31.25rem;
+}
 .product-list {
   margin-top: 2.5rem;
   display: flex;

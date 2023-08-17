@@ -48,24 +48,37 @@
     <main>
       <header>
         <h1>Produtos</h1>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createProductModal">
           Criar produto
         </button>
       </header>
+      <div class="input-group mb-3 input-search">
+        <span class="input-group-text" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+            fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+          </svg></span>
+        <input type="text" id="product-filter" class="form-control" placeholder="Nome de produto"
+          aria-label="Nome de produto" aria-describedby="basic-addon1">
+      </div>
       <section class="product-list">
 
       </section>
     </main>
 
+
+
     <script type="module" src="/provider/api.js"></script>
     <script type="module" src="./index.js"></script>
 
     <!-- Modal Create Product -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="createProductModalLabel"
+      aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Criação de produto</h1>
+            <h1 class="modal-title fs-5" id="createProductModalLabel">Criação de produto</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <form id="form-create-product">
@@ -99,6 +112,78 @@
         </div>
       </div>
     </div>
+    <!-- Modal Update Product -->
+    <div class="modal fade" id="updateProductModal" tabindex="-1" aria-labelledby="updateProductModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="updateProductModalLabel">Atualização de produto</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form id="form-update-product">
+            <div class="modal-body">
+              <div class="form-floating mb-3">
+                <input type="text" name="nome" required class="form-control" id="updateName" placeholder="Sapato">
+                <label for="updateName">Nome do produto</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="number" name="valor" required class="form-control" id="updatePrice" placeholder="250">
+                <label for="updatePrice">Valor</label>
+
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="observacao" required id="updateObs"
+                  placeholder="Produto de couro">
+                <label for="updateObs">Observação</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" name="quantidadeEstoque" required id="updateQuantity"
+                  placeholder="200">
+                <label for="updateQuantity">Quantidade</label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" id='close-modal-update'
+                data-bs-dismiss="modal">Fechar</button>
+              <button type="submit" class="btn btn-primary">Atualizar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="deleteProductModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="deleteProductModalLabel">Deleçao de produto</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form id="form-delete-product">
+            <div class="modal-body text-center mb-4">
+              <button type="button" class="btn btn-secondary" id='close-modal-delete'
+                data-bs-dismiss="modal">Fechar</button>
+              <button type="submit" class="btn btn-danger">Deletar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <footer class="bg-dark text-center text-white">
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2020 Copyright:
+        <a class="text-white" href="https://www.unifaa.edu.br" target="_blank">UNIFAA - Anderson Vieira</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
   </body>
 
   </html>
