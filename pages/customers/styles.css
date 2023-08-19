@@ -1,0 +1,24 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  margin-top: 0.625rem;
+}
+.input-search {
+  max-width: 31.25rem;
+}
+.customer-list {
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 5px;
+  overflow-x: scroll;
+}
+
+@media (min-width: 1024px) {
+  .customer-list {
+    display: flex;
+    gap: 5px;
+    overflow-x: auto;
+    flex-wrap: wrap;
+  }
+}

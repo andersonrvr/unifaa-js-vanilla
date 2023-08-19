@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UNIFAA - DESAFIO 1</title>
+    <title>UNIFAA - Clientes</title>
     <link rel="stylesheet" href="/styles/global.css">
     <link rel="stylesheet" href="./styles.css">
     <!-- jquery -->
@@ -18,6 +18,7 @@
     <!-- toast -->
     <script src="https://cdn.jsdelivr.net/npm/jquery-toast-plugin@1.3.2/dist/jquery.toast.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/jquery-toast-plugin@1.3.2/dist/jquery.toast.min.css" rel="stylesheet">
+    <script type="module" src="/provider/verifyIsLogged.middleware.js"></script>
   </head>
 
   <body>
@@ -29,28 +30,30 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
+          <ul class="navbar-nav" id="navBarLinks">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Home</a>
+              <a class="nav-link" aria-current="page" href="/pages/products/index.html">Produtos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/index.html">Login</a>
+              <a class="nav-link" href="/pages/users/index.html">Usuários</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
+              <a class="nav-link" href="/pages/customers/index.html">Clientes</a>
             </li>
 
           </ul>
         </div>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navBarRightButtons">
+        </ul>
       </div>
     </nav>
 
     <main>
       <header>
-        <h1>Produtos</h1>
+        <h1>Clientes</h1>
 
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createProductModal">
-          Criar produto
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCustomerModal">
+          Criar Cliente
         </button>
       </header>
       <div class="input-group mb-3 input-search">
@@ -59,10 +62,10 @@
             <path
               d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
           </svg></span>
-        <input type="text" id="product-filter" class="form-control" placeholder="Nome de produto"
-          aria-label="Nome de produto" aria-describedby="basic-addon1">
+        <input type="text" id="customer-filter" class="form-control" placeholder="Nome do cliente"
+          aria-label="Nome do cliente" aria-describedby="basic-addon1">
       </div>
-      <section class="product-list">
+      <section class="customer-list">
 
       </section>
     </main>
@@ -72,35 +75,37 @@
     <script type="module" src="/provider/api.js"></script>
     <script type="module" src="./index.js"></script>
 
-    <!-- Modal Create Product -->
-    <div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="createProductModalLabel"
+    <!-- Modal Create Customer -->
+    <div class="modal fade" id="createCustomerModal" tabindex="-1" aria-labelledby="createCustomerModalLabel"
       aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="createProductModalLabel">Criação de produto</h1>
+            <h1 class="modal-title fs-5" id="createCustomerModalLabel">Criação de cliente</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <form id="form-create-product">
+          <form id="form-create-customer">
             <div class="modal-body">
               <div class="form-floating mb-3">
-                <input type="text" name="nome" required class="form-control" id="floatingName" placeholder="Sapato">
-                <label for="floatingName">Nome do produto</label>
+                <input type="text" name="nome" required class="form-control" id="floatingName"
+                  placeholder="João do Carmo">
+                <label for="floatingName">Nome do cliente</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="number" name="valor" required class="form-control" id="floatingPrice" placeholder="250">
-                <label for="floatingPrice">Valor</label>
+                <input type="email" name="email" required class="form-control" id="floatingEmail"
+                  placeholder="example@example.com">
+                <label for="floatingEmail">Email</label>
 
               </div>
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" name="observacao" required id="floatingObs"
-                  placeholder="Produto de couro">
-                <label for="floatingObs">Observação</label>
+                <input type="text" class="form-control" name="telefone" required id="floatingTel"
+                  placeholder="24999999999">
+                <label for="floatingTel">Telefone</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="number" class="form-control" name="quantidadeEstoque" required id="floatingQuantity"
-                  placeholder="200">
-                <label for="floatingQuantity">Quantidade</label>
+                <input type="text" class="form-control" name="cpfOuCnpj" required id="floatingCpfOrCnpj"
+                  placeholder="0000000000000000">
+                <label for="floatingCpfOrCnpj">CPF ou CNPJ</label>
               </div>
             </div>
             <div class="modal-footer">
@@ -112,35 +117,37 @@
         </div>
       </div>
     </div>
-    <!-- Modal Update Product -->
-    <div class="modal fade" id="updateProductModal" tabindex="-1" aria-labelledby="updateProductModalLabel"
+    <!-- Modal Update Customer -->
+    <div class="modal fade" id="updateCustomerModal" tabindex="-1" aria-labelledby="updateCustomerModalLabel"
       aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="updateProductModalLabel">Atualização de produto</h1>
+            <h1 class="modal-title fs-5" id="updateCustomerModalLabel">Atualização do cliente</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <form id="form-update-product">
+          <form id="form-update-customer">
             <div class="modal-body">
               <div class="form-floating mb-3">
-                <input type="text" name="nome" required class="form-control" id="updateName" placeholder="Sapato">
-                <label for="updateName">Nome do produto</label>
+                <input type="text" name="nome" required class="form-control" id="updateName"
+                  placeholder="João do Carmo">
+                <label for="updateName">Nome do cliente</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="number" name="valor" required class="form-control" id="updatePrice" placeholder="250">
-                <label for="updatePrice">Valor</label>
+                <input type="email" name="email" required class="form-control" id="updateEmail"
+                  placeholder="example@example.com">
+                <label for="updateEmail">Email</label>
 
               </div>
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" name="observacao" required id="updateObs"
-                  placeholder="Produto de couro">
-                <label for="updateObs">Observação</label>
+                <input type="text" class="form-control" name="telefone" required id="updateTel"
+                  placeholder="24999999999">
+                <label for="updateTel">Telefone</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="number" class="form-control" name="quantidadeEstoque" required id="updateQuantity"
-                  placeholder="200">
-                <label for="updateQuantity">Quantidade</label>
+                <input type="text" class="form-control" name="cpfOuCnpj" required id="updateCpfOrCnpj"
+                  placeholder="0000000000000000">
+                <label for="updateCpfOrCnpj">CPF ou CNPJ</label>
               </div>
             </div>
             <div class="modal-footer">
@@ -154,15 +161,15 @@
     </div>
 
 
-    <div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="deleteProductModalLabel"
+    <div class="modal fade" id="deleteCustomerModal" tabindex="-1" aria-labelledby="deleteCustomerModalLabel"
       aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="deleteProductModalLabel">Deleçao de produto</h1>
+            <h1 class="modal-title fs-5" id="deleteCustomerModalLabel">Deletar cliente</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <form id="form-delete-product">
+          <form id="form-delete-customer">
             <div class="modal-body text-center mb-4">
               <button type="button" class="btn btn-secondary" id='close-modal-delete'
                 data-bs-dismiss="modal">Fechar</button>
@@ -177,12 +184,10 @@
     </div>
 
     <footer class="bg-dark text-center text-white">
-      <!-- Copyright -->
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2020 Copyright:
+        © 2023 Copyright:
         <a class="text-white" href="https://www.unifaa.edu.br" target="_blank">UNIFAA - Anderson Vieira</a>
       </div>
-      <!-- Copyright -->
     </footer>
   </body>
 

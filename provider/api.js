@@ -1,13 +1,13 @@
 export class API {
   static baseUrl(endpoint) {
-    return `http://localhost:3400/${endpoint}`;
+    return `http://localhost:3401/${endpoint}`;
   }
   static defaultHeaders(method, object, token) {
     return {
       method: method,
       headers: {
         "Content-Type": "application/json",
-        Authorization: JSON.stringify(token),
+        Authorization: this.token,
       },
       body: JSON.stringify(object),
     };
@@ -17,7 +17,7 @@ export class API {
       method: method,
       headers: {
         "Content-Type": "application/json",
-        Authorization: JSON.stringify(token),
+        Authorization: this.token,
       },
     };
   }
@@ -53,19 +53,6 @@ export class API {
       position: "top-center",
     });
   }
-  static async register(object) {
-    try {
-      const response = await fetch(
-        this.baseUrl("login"),
-        this.defaultHeaders("POST", object)
-      );
-      const json = await response.json();
-      this.handleErrors(response, json);
-      return json;
-    } catch (error) {
-      console.log(error);
-    }
-  }
   static async login(email, password) {
     try {
       const response = await fetch(
@@ -74,6 +61,9 @@ export class API {
       );
       const json = await response.json();
       this.handleErrors(response, json);
+      this.token = json.token;
+      window.localStorage.setItem("@UNIFAA-token", json.token);
+      window.open("/pages/products/index.html", "_self");
       return json;
     } catch (error) {
       console.log(error);
@@ -88,7 +78,9 @@ export class API {
       );
       const json = await response.json();
       this.handleErrors(response, json);
+      window.localStorage.clear();
       this.toastSucess("Usuário deslogado");
+      window.open("/index.html", "_self");
       return json;
     } catch (error) {
       console.log(error);
@@ -162,7 +154,7 @@ export class API {
     }
   }
 
-  static async updateCustomer(id) {
+  static async updateCustomer(id, object) {
     try {
       const response = await fetch(
         this.baseUrl(`clientes/${id}`),

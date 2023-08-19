@@ -5,8 +5,7 @@
 }
 main {
   padding: 15px 5px;
-  /* min-height: 83vh; */
-  /* min-height: 83%; */
+
 }
 .navbar {
   border-radius: 0px !important;
@@ -25,9 +24,17 @@ main {
   }
   main {
     padding: 10px 80px;
-    min-height: 88.1vh;
 
   }
+  header,
+footer {
+  height: 56px;
+}
+
+main {
+  height: calc(100vh - 116px);
+}
+
   .text-center {
     position: static ;
   }

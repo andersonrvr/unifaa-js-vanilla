@@ -1,0 +1,192 @@
+<DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNIFAA - Produtos</title>
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="./styles.css">
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"></script>
+    <!-- toast -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-toast-plugin@1.3.2/dist/jquery.toast.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/jquery-toast-plugin@1.3.2/dist/jquery.toast.min.css" rel="stylesheet">
+    <script type="module" src="/provider/verifyIsLogged.middleware.js"></script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">UNIFAA</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav" id="navBarLinks">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/pages/products/index.html">Produtos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/pages/users/index.html">Usuários</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/pages/customers/index.html">Clientes</a>
+            </li>
+
+          </ul>
+        </div>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navBarRightButtons">
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+      <header>
+        <h1>Produtos</h1>
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createProductModal">
+          Criar produto
+        </button>
+      </header>
+      <div class="input-group mb-3 input-search">
+        <span class="input-group-text" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+            fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+          </svg></span>
+        <input type="text" id="product-filter" class="form-control" placeholder="Nome de produto"
+          aria-label="Nome de produto" aria-describedby="basic-addon1">
+      </div>
+      <section class="product-list">
+
+      </section>
+    </main>
+
+
+
+    <script type="module" src="/provider/api.js"></script>
+    <script type="module" src="./index.js"></script>
+
+    <!-- Modal Create Product -->
+    <div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="createProductModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="createProductModalLabel">Criação de produto</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form id="form-create-product">
+            <div class="modal-body">
+              <div class="form-floating mb-3">
+                <input type="text" name="nome" required class="form-control" id="floatingName" placeholder="Sapato">
+                <label for="floatingName">Nome do produto</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="number" name="valor" required class="form-control" id="floatingPrice" placeholder="250">
+                <label for="floatingPrice">Valor</label>
+
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="observacao" required id="floatingObs"
+                  placeholder="Produto de couro">
+                <label for="floatingObs">Observação</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" name="quantidadeEstoque" required id="floatingQuantity"
+                  placeholder="200">
+                <label for="floatingQuantity">Quantidade</label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" id='close-modal-creation'
+                data-bs-dismiss="modal">Fechar</button>
+              <button type="submit" class="btn btn-primary">Criar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Update Product -->
+    <div class="modal fade" id="updateProductModal" tabindex="-1" aria-labelledby="updateProductModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="updateProductModalLabel">Atualização de produto</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form id="form-update-product">
+            <div class="modal-body">
+              <div class="form-floating mb-3">
+                <input type="text" name="nome" required class="form-control" id="updateName" placeholder="Sapato">
+                <label for="updateName">Nome do produto</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="number" name="valor" required class="form-control" id="updatePrice" placeholder="250">
+                <label for="updatePrice">Valor</label>
+
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="observacao" required id="updateObs"
+                  placeholder="Produto de couro">
+                <label for="updateObs">Observação</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" name="quantidadeEstoque" required id="updateQuantity"
+                  placeholder="200">
+                <label for="updateQuantity">Quantidade</label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" id='close-modal-update'
+                data-bs-dismiss="modal">Fechar</button>
+              <button type="submit" class="btn btn-primary">Atualizar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="deleteProductModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="deleteProductModalLabel">Deletar de produto</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form id="form-delete-product">
+            <div class="modal-body text-center mb-4">
+              <button type="button" class="btn btn-secondary" id='close-modal-delete'
+                data-bs-dismiss="modal">Fechar</button>
+              <button type="submit" class="btn btn-danger">Deletar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <footer class="bg-dark text-center text-white">
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2023 Copyright:
+        <a class="text-white" href="https://www.unifaa.edu.br" target="_blank">UNIFAA - Anderson Vieira</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+  </body>
+
+  </html>

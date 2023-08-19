@@ -22,10 +22,14 @@ export const productCard = (
   card.innerHTML = `
       <div class="card-body" >
         <h5 class="card-title">${name}</h5>
-        <h6 class="card-subtitle mb-2 text-body-secondary">R$${price}</h6>
+        <h6 class="card-subtitle mb-2 text-body-secondary">${Number(
+          price
+        ).toLocaleString("pt-br", { style: "currency", currency: "BRL" })}</h6>
         <p class="card-text">${observation}</p>
         <p class="card-text">Quantidade: ${quantity}</p>
-        <p class="card-text text-body-secondary">Criação: ${timeSplitted[2]}/${timeSplitted[1]}/${timeSplitted[0]}</p>
+        <p class="card-text text-body-secondary">Criação: ${timeSplitted[2]}/${
+    timeSplitted[1]
+  }/${timeSplitted[0]}</p>
         <a id="${idProduct}" class="btn btn-primary update-product" data-bs-toggle="modal" data-bs-target="#updateProductModal">Atualizar</a>
         <a id="${idProduct}" class="btn btn-danger delete-product" data-bs-toggle="modal" data-bs-target="#deleteProductModal">Deletar</a>
         </div>
@@ -77,8 +81,6 @@ export const formCreateProductFunction = async (e) => {
 };
 
 export const fillUpdateForm = async (e) => {
-  console.log(e.target);
-  console.log(e.currentTarget);
   const updateObs = document.querySelector("#updateObs");
   const updatePrice = document.querySelector("#updatePrice");
   const updateName = document.querySelector("#updateName");

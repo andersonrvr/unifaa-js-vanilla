@@ -1,12 +1,9 @@
-import { API } from "../../provider/api.js";
 import {
-  fillUpdateForm,
   filterProducts,
   formCreateProductFunction,
   formDeleteProductFunction,
   formUpdateProductFunction,
   mountPage,
-  productCard,
   products,
 } from "./functions.js";
 

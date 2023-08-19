@@ -1,0 +1,23 @@
+.login-form {
+  max-width: 500px;
+  width: auto;
+  margin: 150px auto;
+  /* height: 350px; */
+  padding: 2rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.2rem;
+  display: flex;
+  flex-direction: column;
+}
+h4 {
+  margin-bottom: 15px !important;
+}
+.buttonDiv {
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 575.98px) {
+  .login-form {
+    margin: 1rem;
+  }
+}
