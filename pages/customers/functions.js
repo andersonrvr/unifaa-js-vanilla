@@ -102,7 +102,7 @@ export const formUpdateCustomerFunction = async (e) => {
 
 export const filterCustomers = (e) => {
   const filteredCustomers = customers.filter((customer) =>
-    customer.nome.toLowerCase().includes(e.target.value)
+    customer.nome.toLowerCase().includes(e.target.value.toLowerCase())
   );
   mountPage(filteredCustomers);
 };

@@ -1,8 +1,8 @@
 export class API {
   static baseUrl(endpoint) {
-    return `http://localhost:3401/${endpoint}`;
+    return `http://localhost:3400/${endpoint}`;
   }
-  static defaultHeaders(method, object, token) {
+  static defaultHeaders(method, object) {
     return {
       method: method,
       headers: {
@@ -12,7 +12,7 @@ export class API {
       body: JSON.stringify(object),
     };
   }
-  static defaultHeadersWithoutBody(method, token) {
+  static defaultHeadersWithoutBody(method) {
     return {
       method: method,
       headers: {

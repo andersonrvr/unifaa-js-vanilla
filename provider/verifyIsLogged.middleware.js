@@ -37,5 +37,7 @@ if (logged && AUTENTICATION) {
   navBarButtonsDiv.innerHTML = notLoggedButtons;
   const btnLogin = document.querySelector("#btnLogin");
   btnLogin.addEventListener("click", () => window.open("/index.html", "_self"));
-  navBarLinksUl.innerHTML = ``;
+  if (AUTENTICATION) {
+    navBarLinksUl.innerHTML = ``;
+  }
 }

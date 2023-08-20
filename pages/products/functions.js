@@ -112,7 +112,7 @@ export const formUpdateProductFunction = async (e) => {
 
 export const filterProducts = (e) => {
   const filteredProducts = products.filter((product) =>
-    product.nome.toLowerCase().includes(e.target.value)
+    product.nome.toLowerCase().includes(e.target.value.toLowerCase())
   );
   mountPage(filteredProducts);
 };

@@ -36,7 +36,7 @@ export const mountPage = async (usersParameteer) => {
 
 export const filterUsers = (e) => {
   const filteredUsers = users.filter((user) =>
-    user.nome.toLowerCase().includes(e.target.value)
+    user.nome.toLowerCase().includes(e.target.value.toLowerCase())
   );
   mountPage(filteredUsers);
 };
